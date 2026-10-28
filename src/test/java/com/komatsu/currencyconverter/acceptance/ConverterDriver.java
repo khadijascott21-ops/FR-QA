@@ -102,8 +102,8 @@ public class ConverterDriver implements AutoCloseable {
 
     private void render() {
         try {
-            gui.processInput();
-            gui.updateScreen();
+            // Process queued dropdown listeners before reading or drawing the result.
+            gui.getGUIThread().processEventsAndUpdate();
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
